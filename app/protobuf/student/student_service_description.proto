@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+import "student/student_messages_description.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+
+option java_multiple_files = true;
+option java_package = "services.grpc.proto.student";
+option java_outer_classname = "StudentServiceDescriptionProto";
+
+package student;
+
+service StudentServiceProto {
+
+    rpc list (ListStudentRequestProto) returns (ListStudentResponseProto) {
+    }
+
+    rpc get (GetStudentRequestProto) returns (GetStudentResponseProto) {
+    }
+
+    rpc count (CountStudentRequestProto) returns (CountStudentResponseProto) {
+    }
+
+    rpc add (AddStudentRequestProto) returns (AddStudentResponseProto) {
+    }
+
+    rpc update (UpdateStudentRequestProto) returns (UpdateStudentResponseProto) {
+    }
+
+    rpc delete (DeleteStudentRequestProto) returns (DeleteStudentResponseProto) {
+    }
+
+}
+
+
+
+    message ListStudentRequestProto {
+        RequestParamProto param = 1;
+        google.protobuf.StringValue search = 2;
+    }
+    message ListStudentResponseProto {
+        repeated StudentProto data = 1;
+    }
+
+    message GetStudentRequestProto {
+        string id = 1;
+        RequestParamProto param = 2;
+    }
+    message GetStudentResponseProto {
+        StudentProto data = 1;
+    }
+
+
+    message CountStudentRequestProto {
+        RequestParamProto param = 1;
+        google.protobuf.StringValue search = 2;
+    }
+    message CountStudentResponseProto {
+        int32 limit = 1;
+        int32 page_number = 2;
+        int32 pages_count = 3;
+        int32 total_count = 4;
+    }
+
+
+    message AddStudentRequestProto {
+        AddStudentProto data = 1;
+    }
+    message AddStudentResponseProto {
+        string id = 1;
+        string action = 2;
+        string message = 3;
+        StatusTypeProto status = 4;
+        StudentProto data = 5;
+    }
+
+    message UpdateStudentRequestProto {
+        string id = 1;
+        UpdateStudentProto data = 2;
+    }
+    message UpdateStudentResponseProto {
+        string id = 1;
+        string action = 2;
+        string message = 3;
+        StatusTypeProto status = 4;
+        StudentProto data = 5;
+    }
+
+    message DeleteStudentRequestProto {
+        string id = 1;
+    }
+    message DeleteStudentResponseProto {
+        string id = 1;
+        string action = 2;
+        string message = 3;
+        StatusTypeProto status = 4;
+        StudentProto data = 5;
+    }

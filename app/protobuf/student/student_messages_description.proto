@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+option java_multiple_files = true;
+option java_package = "services.grpc.proto.student";
+option java_outer_classname = "StudentMessagesDescriptionProto";
+
+package student;
+
+message StudentProto {
+    google.protobuf.StringValue _id = 1 [json_name = "_id"];
+    PersonalInfoProto personal = 2;
+    CollegeInfoProto college = 3;
+    repeated EmailProto email = 4; //email
+    repeated PhoneProto phone_number = 5; //phone
+    AddressProto address = 6;
+}
+
+message PersonalInfoProto {
+    google.protobuf.StringValue gender = 1 ;
+    google.protobuf.StringValue first_name = 2;
+    google.protobuf.StringValue last_name = 3;
+    int32 age = 4;
+}
+
+message CollegeInfoProto {
+    google.protobuf.StringValue gender = 1 ;
+    google.protobuf.StringValue first_name = 2;
+    google.protobuf.StringValue last_name = 3;
+    int32 age = 4;
+}
+
+message EmailProto {
+    EmailTypeProto email_type = 1 ;
+    string value = 2;
+}
+
+message PhoneProto {
+    PhoneTypeProto.PhoneTypeProto phone_type = 1 ;
+    string value = 2;
+}
+
+message AddressProto {
+    google.protobuf.StringValue state = 1;
+    google.protobuf.StringValue location = 2;
+    google.protobuf.StringValue city = 3;
+    google.protobuf.StringValue country = 4;
+    google.protobuf.StringValue address_number = 5;
+    google.protobuf.StringValue zip = 6;
+    google.protobuf.StringValue street_number = 7;
+    google.protobuf.StringValue street_name = 8;
+    google.protobuf.StringValue district = 9;
+    google.protobuf.StringValue zone = 10;
+    google.protobuf.StringValue mailing_street = 11;
+}
+
+
+
+message AddStudentProto {
+    PersonalInfoProto personal = 1;
+    CollegeInfoProto college = 2;
+    repeated EmailProto email = 3; //email
+    repeated PhoneProto phone_number = 4; //phone
+    AddressProto address = 5;
+}
+
+message UpdateStudentProto {
+    string id = 1;
+    PersonalInfoProto personal = 2;
+    CollegeInfoProto college = 3;
+    repeated EmailProto email = 4;
+    repeated PhoneProto phone_number = 5;
+    AddressProto address = 6;
+}
+
+
+message RequestParamProto {
+    google.protobuf.Int32Value limit = 1;
+    google.protobuf.StringValue sort = 2; //google.protobuf.Struct If Json to be included
+    google.protobuf.StringValue filters = 3; //google.protobuf.Struct If Json to be included
+}
+
+//enum
+enum EmailTypeProto{
+    EMAIL_TYPE_UNKNOWN = 0;
+    Personal = 1;
+    Secondary = 2;
+    Others = 3;
+}
+message PhoneTypeProto{ //If Same File Contains Same Value of Enum.
+    enum PhoneTypeProto{
+        PHONE_TYPE_UNKNOWN = 0;
+        Home = 1;
+        Mobile = 2;
+        Others = 3;
+    }
+}
+
+enum StatusTypeProto{
+    STATUS_TYPE_UNKNOWN = 0;
+    OK = 1;
+    CREATED = 2;
+    DELETED = 3;
+    ACCEPTED = 4;
+    BAD_REQUEST = 5;
+    UNAUTHORIZED = 6;
+    FORBIDDEN = 7;
+    INTERNAL_SERVER_ERROR = 8;
+    BAD_GATEWAY = 9;
+    SERVICE_UNAVAILABLE = 10;
+    GATEWAY_TIMEOUT = 11;
+    NOT_FOUND = 12;
+    INVALID_INPUT = 13;
+}
+
